@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+.hotHouse {
+    border: 0px solid;
+    height: 300px;
+    width: 450px;
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-left: 5px;
+
+}
+/* 全局样式表 */
+html,
+body,
+#app{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+}
