@@ -53,9 +53,9 @@
 </template>
 
 <script>
-import swiperVue from '../components/swiper.vue'
-import navigation from "@/components/navigation";
-import hotHouseList from "@/components/hotHouseList";
+import swiperVue from '../components/navigation/swiper.vue'
+import navigation from "@/components/navigation/navigation";
+import hotHouseList from "@/components/house/hotHouseList";
 export default {
   name: "index",
   components:{

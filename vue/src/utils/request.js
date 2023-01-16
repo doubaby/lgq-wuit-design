@@ -1,57 +1,51 @@
 import axios from 'axios'
-import {Message, MessageBox} from 'element-ui'
-import store from '../store'
-import {getToken} from '@/utils/auth'
+import ElementUI from "element-ui";
+import jsCookie from "js-cookie";
 
-// 创建axios实例
-const service = axios.create({
-    baseURL: 'http://localhost:8081', // api 的 base_url
-    timeout: 20000 // 请求超时时间
+const request = axios.create({
+    baseURL: 'http://localhost:8082',
 })
 
-// request拦截器
-service.interceptors.request.use(
-    config => {
-        if (store.getters.token) {
-            config.headers['token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
-        }
-        return config
-    },
-    error => {
-        // Do something with request error
-        console.log(error) // for debug
-        Promise.reject(error)
+// request 拦截器
+// 可以自请求发送前对请求做一些处理
+// 比如统一加token，对请求参数统一加密
+request.interceptors.request.use(config => {
+    config.headers['Content-Type'] = 'application/json;charset=utf-8';
+    if (jsCookie.get("token")) {
+        config.headers['lgq_token'] = jsCookie.get("token");  // 设置请求头
     }
-)
+    return config
+}, error => {
+    return Promise.reject(error)
+});
 
 // response 拦截器
-service.interceptors.response.use(
+// 可以在接口响应后统一处理结果
+request.interceptors.response.use(
     response => {
-        /**
-         * code为非20000是抛错 可结合自己业务进行修改
-         */
-        const res = response.data
-        // debugger
-        if (res.code !== 20000) {
-            Message({
-                message: res.message,
-                type: 'error',
-                duration: 5 * 1000
-            })
-            return Promise.reject('error')
-        } else {
-            return response.data
+        let res = response.data;
+        // 如果是返回的文件
+        if (response.config.responseType === 'blob') {
+            return res
         }
+        // 兼容服务端返回的字符串数据
+        if (typeof res === 'string') {
+            res = res ? JSON.parse(res) : res
+        }
+        //当权限验证不通过时提示
+        if (res.code === '403') {
+            ElementUI.Message({
+                message: res.msg,
+                type: 'error'
+            });
+        }
+        return res;
     },
     error => {
         console.log('err' + error) // for debug
-        Message({
-            message: error.message,
-            type: 'error',
-            duration: 5 * 1000
-        })
         return Promise.reject(error)
     }
 )
 
-export default service
+
+export default request
