@@ -12,9 +12,10 @@ import static com.lgq.House.utils.ResultCode.*;
 @Data
 @Log4j
 public class ResultVo {
+    private Integer code;
     private String msg;
     private Object data;
-    private Integer code;
+
 
     private ResultVo() {
     }
@@ -23,7 +24,15 @@ public class ResultVo {
     public static ResultVo SUCCESS(Object data) {
         ResultVo resultVo = new ResultVo();
         resultVo.code = SUCCESS;
+        resultVo.msg = SuccessMsg;
         resultVo.data = data;
+        return resultVo;
+    }
+
+    @ApiModelProperty("成功不返回任何值")
+    public static ResultVo SUCCESS() {
+        ResultVo resultVo = new ResultVo();
+        resultVo.code = SUCCESS;
         resultVo.msg = SuccessMsg;
         return resultVo;
     }

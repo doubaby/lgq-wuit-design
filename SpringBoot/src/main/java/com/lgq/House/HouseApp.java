@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.concurrent.Executors;
+
 @EnableSwagger2
 @SpringBootApplication
 @MapperScan(basePackages = "com.lgq.House.mapper")

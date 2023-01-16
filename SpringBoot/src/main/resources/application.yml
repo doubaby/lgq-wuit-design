@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
 Spring:
   application:
   datasource:
@@ -14,7 +14,19 @@ Spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  redis:
+    lettuce:
+      pool:
+        min-idle: 0
+        max-wait: 6
+        max-active: 8
+        max-idle: 8
+    host: 192.168.111.129
+    port: 6379
+    database: 0
+    timeout: 1000
+    password: 558666
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
+  mapper-locations: classpath:com/lgq/House/mapper/xml/*.xml

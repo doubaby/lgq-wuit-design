@@ -10,8 +10,9 @@ import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
 
+import java.util.Arrays;
 
-    /**
+/**
      * @author
      * @since 2018/12/13
      */
@@ -26,7 +27,7 @@ import org.junit.Test;
             // 2、全局配置
             GlobalConfig gc = new GlobalConfig();
             String projectPath = System.getProperty("user.dir");
-            gc.setOutputDir("D:\\LGQ的毕设" + "/src/main/java");
+            gc.setOutputDir("D:\\LGQ的房屋出租毕设\\SpringBoot" + "/src/main/java");
             gc.setAuthor("testjava");
             gc.setOpen(false); //生成后是否打开资源管理器
             gc.setFileOverride(false); //重新生成时文件是否覆盖
@@ -58,7 +59,7 @@ import org.junit.Test;
 
             // 5、策略配置
             StrategyConfig strategy = new StrategyConfig();
-            strategy.setInclude("houselist","paid","schedule","solve","user","userlist");//生成表的名称
+            strategy.setInclude("comments");//生成表的名称
             strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
             strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
 
@@ -73,6 +74,7 @@ import org.junit.Test;
             // 6、执行
             mpg.execute();
         }
+
     }
 
 

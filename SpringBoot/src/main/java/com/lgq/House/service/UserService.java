@@ -1,5 +1,6 @@
 package com.lgq.House.service;
 
+import com.lgq.House.entity.Dto.UserDto;
 import com.lgq.House.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+    String login(UserDto userDto);
+
+    void register(UserDto userDto);
 }
