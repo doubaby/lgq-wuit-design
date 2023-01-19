@@ -14,7 +14,7 @@ const routes = [
             },
             {
                 path:'/Message',
-                component: () => import('../components/navigation/GiveMeMsg')
+                component: () => import('../components/comment/Comment')
             },
             {
                 path:'/Board',

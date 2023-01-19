@@ -8,6 +8,7 @@ import './assets/global.css'
 import store from './store/index'
 import vueCookie from 'vue-cookies'
 import axios from "axios";
+import emoji from "@/assets/js/emoji";
 
 Vue.config.productionTip = false
 
