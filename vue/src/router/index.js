@@ -18,7 +18,7 @@ const routes = [
             },
             {
                 path:'/Board',
-                component: () => import('../components/navigation/board')
+                component: () => import('../components/board/board')
             },
             {
                 path:'/HouseDetail/:houseId',
